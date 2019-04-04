@@ -1,4 +1,14 @@
 const express = require('express')
+const mongoose = require('mongoose')
+
+//链接mongo
+const DB_URL = 'mongodb://127.0.0.1:27017'
+mongoose.connect(DB_URL)
+mongoose.connection.on('connected', () => {
+    console.log('mongo connect success')
+})
+
+//新建app
 const app = express()
 
 app.get('/', (req, res) => {
