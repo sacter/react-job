@@ -22,7 +22,7 @@ const User = mongoose.model('user', new mongoose.Schema({
 //     } else {
 //         console.log(doc)
 //     }
-// })
+// })npm
 //删除数据
 // User.remove({age: 23}, (err, doc) => {
 //     console.log(doc)
