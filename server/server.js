@@ -49,7 +49,6 @@ app.get('/data', (req, res) => {
     User.findOne({'user': 'scater'}, (err, doc) => {
         res.json(doc)
     })
-
 })
 
 app.listen(8001, () => {
