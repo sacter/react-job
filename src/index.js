@@ -5,38 +5,23 @@ import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import { BrowserRouter, Route, Link } from 'react-router-dom'
 
-import App from './App'
-import { counter } from './index.redux'
+import Login from './container/login/login'
+import Register from './container/register/register'
+import reducers from './reducer'
 import './config'
 
-const store = createStore(counter, compose(
+const store = createStore(reducers, compose(
     applyMiddleware(thunk),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 ))
 
-function Erying () {
-    return<h2>二营</h2>
-}
-function Qibinglian () {
-    return<h2>骑兵连</h2>
-}
 ReactDom.render(
     (<Provider store={store}>
         <BrowserRouter>
-            <ul>
-                <li>
-                    <Link to='/'>一营</Link>
-                </li>
-                <li>
-                    <Link to='/erying'>二营</Link>
-                </li>
-                <li>
-                    <Link to='/qibinglian'>骑兵连</Link>
-                </li>
-            </ul>
-            <Route path='/' exact component={App}></Route>
-            <Route path='/erying' component={Erying}></Route>
-            <Route path='/qibinglian' component={Qibinglian}></Route>
+          <div>
+            <Route path='/login' component={Login}></Route>
+            <Route path='/register' component={Register}></Route>
+          </div>
         </BrowserRouter>
     </Provider>),
     document.getElementById('root')
