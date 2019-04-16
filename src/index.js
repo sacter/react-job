@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Link } from 'react-router-dom'
 
 import Login from './container/login/login'
 import Register from './container/register/register'
+import AuthRoute from './components/authroute/authroute'
 import reducers from './reducer'
 import './config'
 

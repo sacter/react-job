@@ -1,17 +1,15 @@
 import React from 'react'
-import logoImg from './logo.jpg'
-import './logo.css'
+import axios from 'axios'
 
 class AuthRoute extends React.Component{
   componentDidMount(){
-    // 用户信息
+    // 获取用户信息
+    axios.get('/user/info').then(res =>{
+      console.log(res.data)
+    })
   }
   render(){
-    return (
-      <div className="logo-container">
-        <img src={logoImg} alt=''/>
-      </div>
-    )
+    return <p>判断跳转的地方</p>
   }
 }
 
