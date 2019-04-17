@@ -9,7 +9,7 @@ import {
   Radio
 } from 'antd-mobile'
 import { connect } from 'react-redux'
-import { register} from '../../redux/user.redux'
+import { register } from '../../redux/user.redux'
 
 @connect(
   state => state.user,
