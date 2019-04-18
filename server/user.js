@@ -5,18 +5,21 @@ const User = model.getModel('user')
 const utils = require('utility')
 
 Router.get('/list', (req, res) => {
+  // User.remove({}, (err, doc) => {})
   User.find({}, (err, doc) => {
     return res.json(doc)
   })
 })
+Router.post('/login', (req, res) => {
+  const {user, pwd} = req.body;
+  User.findOne({user, pwd: md5Pwd(pwd)}, {'pwd': 0, '__v': 0}, (err, doc) => {
+    if (!doc) {
+      return res.json({code: 1, msg: '用户名或密码错误'})
+    }
+    return res.json({code: 0, data: doc})
+  })
+})
 Router.post('/register', (req, res) => {
-  console.log(req.body);
-  // User.remove({pwd:2}, (err, doc) => {
-  //       if (err) {
-  //         return res.json({code: 1, msg: '后端出错'})
-  //       }
-  //       console.log('删除成功')
-  //     })
   const {user, pwd, type} = req.body;
   User.findOne({user}, (err, doc) => {
     if (doc) {
@@ -36,6 +39,10 @@ Router.get('/info',  (req, res) => {
   return res.json({code: 1})
 })
 
+/**
+ * 对用户密码加密加盐
+ * @param {*} pwd 
+ */
 function md5Pwd (pwd) {
   const salt = 'scater_react_job_18923@#4545_-~~~34!@#$%dd';
   return utils.md5(utils.md5(pwd+salt))
