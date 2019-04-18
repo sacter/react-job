@@ -4,6 +4,8 @@ const model = require('./model')
 const User = model.getModel('user')
 const utils = require('utility')
 
+const _filter = {'pwd': 0, '__v': 0}
+
 Router.get('/list', (req, res) => {
   // User.remove({}, (err, doc) => {})
   User.find({}, (err, doc) => {
@@ -12,10 +14,11 @@ Router.get('/list', (req, res) => {
 })
 Router.post('/login', (req, res) => {
   const {user, pwd} = req.body;
-  User.findOne({user, pwd: md5Pwd(pwd)}, {'pwd': 0, '__v': 0}, (err, doc) => {
+  User.findOne({user, pwd: md5Pwd(pwd)}, _filter, (err, doc) => {
     if (!doc) {
       return res.json({code: 1, msg: '用户名或密码错误'})
     }
+    res.cookie('userid', doc._id) // 存储cookie
     return res.json({code: 0, data: doc})
   })
 })
@@ -36,7 +39,18 @@ Router.post('/register', (req, res) => {
 
 Router.get('/info',  (req, res) => {
   //用户有没有cookie
-  return res.json({code: 1})
+  const {userid} = req.cookies; // 获取用户请求cookie
+  if (!userid) {
+    return res.json({code: 1})
+  }
+  User.findOne({_id: userid}, _filter, (err, doc) => {
+    if (err) {
+      return res.json({code: 1, msg: '后端出错'})
+    }
+    if (doc) {
+      return res.json({code: 0, data: doc})
+    }
+  })
 })
 
 /**
