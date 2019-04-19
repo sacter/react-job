@@ -4,13 +4,13 @@ import { gerRedirectPath } from '../util'
 const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 const ERROR_MSG = 'ERROR_MSG'
+const LOAD_DATA = 'LOAD_DATA'
 
 const initState = {
   redirectTo: '',
   isAuth: false,
   msg: '',
   user: '',
-  pwd: '',
   type: ''
 }
 // reducer
@@ -20,6 +20,8 @@ export function user(state = initState, action) {
       return {...state, msg: '', redirectTo: gerRedirectPath(action.payload), isAuth: true, ...action.payload}
     case LOGIN_SUCCESS:
       return {...state, msg: '', redirectTo: gerRedirectPath(action.payload), isAuth: true, ...action.payload}
+    case LOAD_DATA:
+      return {...state, ...action.payload}
     case ERROR_MSG:
     return {...state, msg: action.msg, isAuth: false}
     default:
@@ -35,9 +37,13 @@ function loginSuccess (data) {
   return {type: LOGIN_SUCCESS, payload:data}
 }
 
-
 function errorMsg (msg) {
   return {msg, type: ERROR_MSG}
+}
+
+export function loadData(userinfo) {
+  // 获取用户信息
+  return {type: LOAD_DATA, payload: userinfo}
 }
 
 export function login ({user, pwd}) {

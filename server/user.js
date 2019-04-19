@@ -12,7 +12,7 @@ Router.get('/list', (req, res) => {
     return res.json(doc)
   })
 })
-Router.post('/login', (req, res) => {
+Router.post('/login', (req, res) => { // 登录接口
   const {user, pwd} = req.body;
   User.findOne({user, pwd: md5Pwd(pwd)}, _filter, (err, doc) => {
     if (!doc) {
@@ -22,17 +22,21 @@ Router.post('/login', (req, res) => {
     return res.json({code: 0, data: doc})
   })
 })
-Router.post('/register', (req, res) => {
+Router.post('/register', (req, res) => { // 注册接口
   const {user, pwd, type} = req.body;
   User.findOne({user}, (err, doc) => {
     if (doc) {
       return res.json({code: 1, msg: '用户名已存在'})
     }
-    User.create({user, type, pwd: md5Pwd(pwd)}, (err, doc) => {
+
+    const userModel = new User({user, type, pwd: md5Pwd(pwd)})
+    userModel.save((err, doc) => {
       if (err) {
         return res.json({code: 1, msg: '后端出错'})
       }
-      return res.json({code: 0})
+      const {user, type, _id} = doc
+      res.cookie('userid', _id)
+      return res.json({code: 0, data: {user, type, _id}})
     })
   })
 })
