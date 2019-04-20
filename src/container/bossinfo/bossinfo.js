@@ -1,19 +1,26 @@
 import React from 'react'
-import { NavBar, InputItem, TextareaItem } from 'antd-mobile'
+import { NavBar, InputItem, TextareaItem, Button } from 'antd-mobile'
 import AvatarSelector from '../../components/avatar-selector/avatar-selector'
 
 class BossInfo extends React.Component{
   constructor(props) {
     super(props)
     this.state = {
-      title: ''
+      title: '',
+      avatar: ''
     }
+    this.selectAvatar = this.selectAvatar.bind(this)
   }
   onChange (key, val) {
     this.setState({
       [key]: val
     })
-  } 
+  }
+  selectAvatar(imgname){
+    this.setState({
+      avatar: imgname
+    })
+  }
   render(){
     return (
       <div>
@@ -37,6 +44,7 @@ class BossInfo extends React.Component{
           autoHeight
           onChange={v => this.onChange('desc', v)}>
         </TextareaItem>
+        <Button type='primary'>保存</Button>
       </div>
     )
   }

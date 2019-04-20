@@ -1,8 +1,11 @@
 import React from 'react'
-import { Grid }  from 'antd-mobile' 
+import { Grid, List }  from 'antd-mobile' 
 
 class AvatarSelector extends React.Component{
-
+  constructor(props){
+    super(props)
+    this.state={}
+  }
   render(){
     const avatarList = 'boy,boy-1,boy-2,boy-3,boy-4,boy-5,girl,girl-1,girl-2,girl-3,girl-4,girl-5,girl-6,girl-7,man,man-1'
                         .split(',')
@@ -10,16 +13,24 @@ class AvatarSelector extends React.Component{
                           icon: require(`../img/${v}.png`),
                           text: v
                         }))
+    const gridHeader = this.state.icon
+                        ?(<div>
+                          <span>已选择头像</span>
+                          <img style={{width: 20}} src={this.state.icon}/>
+                        </div>)
+                        :'请选择头像'
     return (
       <div>
-        头像选择
-        <Grid
-          data={avatarList}
-          activeStyle={false}
-          onClick={el => {
-            this.props.selectAvatar(el.text)
-          }}
-        />
+        <List renderHeader={() => gridHeader}>
+          <Grid
+            data={avatarList}
+            activeStyle={false}
+            onClick={el => {
+              this.setState(el)
+              this.props.selectAvatar(el.text)
+            }}
+          />
+        </List>
       </div>
     )
   }
