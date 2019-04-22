@@ -15,8 +15,6 @@ class BossInfo extends React.Component{
     this.state = {
       title: '',
       desc: '',
-      company: '',
-      money: '',
       avatar: ''
     }
     this.selectAvatar = this.selectAvatar.bind(this)
@@ -37,22 +35,16 @@ class BossInfo extends React.Component{
     return (
       <div style={{paddingBottom:40}} className='bg-white'>
         {redirect && redirect !== path?<Redirect to={redirect}></Redirect>:null}
-        <NavBar mode='dark'>BOSS完善信息页</NavBar>
+        <NavBar mode='dark'>牛人完善信息页</NavBar>
         <AvatarSelector
           selectAvatar={this.selectAvatar}
         ></AvatarSelector>
         <InputItem onChange={v => this.onChange('title', v)}>
-          招聘职位
-        </InputItem>
-        <InputItem onChange={v => this.onChange('company', v)}>
-          公司名称
-        </InputItem>
-        <InputItem onChange={v => this.onChange('money', v)}>
-          职位薪资
+          求职岗位
         </InputItem>
         <TextareaItem
-          title="职位要求"
-          placeholder="请输入职位要求"
+          title="个人简介"
+          placeholder="请输个人简介"
           rows={3}
           autoHeight
           onChange={v => this.onChange('desc', v)}>
