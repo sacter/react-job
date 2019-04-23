@@ -1,44 +1,67 @@
 import React from 'react'
-import { Grid, List }  from 'antd-mobile'
-import PropTypes from 'prop-types' 
+import { connect } from 'react-redux'
+import { NavBar } from 'antd-mobile'
+import NavLinkBar from '../navlink/navlink'
 
-class AvatarSelector extends React.Component{
-  static propTypes = {
-    selectAvatar: PropTypes.func.isRequired
-  }
+function Boss(){
+  return <h2>Boss首页</h2>
+}
+function Genius(){
+  return <h2>牛人首页</h2>
+}
+function Msg(){
+  return <h2>消息列表</h2>
+}
+function User(){
+  return <h2>个人中心</h2>
+}
+@connect(
+  state => state
+)
+class Dashboard extends React.Component{
 
-  constructor(props){
-    super(props)
-    this.state={}
-  }
   render(){
-    const avatarList = 'boy,boy-1,boy-2,boy-3,boy-4,boy-5,girl,girl-1,girl-2,girl-3,girl-4,girl-5,girl-6,girl-7,man,man-1'
-                        .split(',')
-                        .map(v => ({
-                          icon: require(`../img/${v}.png`),
-                          text: v
-                        }))
-    const gridHeader = this.state.icon
-                        ?(<div>
-                          <span>已选择头像</span>
-                          <img style={{width: 20}} src={this.state.icon}/>
-                        </div>)
-                        :'请选择头像'
+    const user = this.props.user
+    const {pathname} = this.props.location
+    const navList = [
+      {
+        path: '/boss',
+        text: '牛人',
+        icon: 'boss',
+        title: '牛人列表',
+        component: Boss,
+        hide: user.type==='genius'
+      },
+      {
+        path: '/genius',
+        text: 'boss',
+        icon: 'job',
+        title: 'BOSS列表',
+        component: Genius,
+        hide: user.type==='boss'
+      },
+      {
+        path: '/msg',
+        text: '消息',
+        icon: 'msg',
+        title: '消息列表',
+        component: Msg,
+      },
+      {
+        path: '/me',
+        text: '我',
+        icon: 'user',
+        title: '个人中心',
+        component: User
+      }
+    ]
     return (
       <div>
-        <List renderHeader={() => gridHeader}>
-          <Grid
-            data={avatarList}
-            activeStyle={false}
-            onClick={el => {
-              this.setState(el)
-              this.props.selectAvatar(el.text)
-            }}
-          />
-        </List>
+        <NavBar mode='dark'>{navList.find(v => v.path===pathname).title}</NavBar>
+        <NavLinkBar data={navList}></NavLinkBar>
       </div>
     )
   }
 }
 
-export default AvatarSelector
+export default Dashboard

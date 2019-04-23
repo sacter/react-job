@@ -15,11 +15,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-pengyoufill:before {
+.user-active:before {
   content: "\e745";
 }
 
-.icon-pengyou:before {
+.user:before {
   content: "\e746";
 }
 
@@ -47,27 +47,27 @@
   content: "\e88e";
 }
 
-.icon-moduanwangdian-xianxing:before {
+.job:before {
   content: "\e890";
 }
 
-.icon-moduanwangdian:before {
+.job-active:before {
   content: "\e891";
 }
 
-.icon-liaotianduihua:before {
+.msg-active:before {
   content: "\e8bc";
 }
 
-.icon-liaotianduihua-xianxing:before {
+.msg:before {
   content: "\e8bd";
 }
 
-.icon-addpeople_fill:before {
+.boss-active:before {
   content: "\e6e1";
 }
 
-.icon-addpeople:before {
+.boss:before {
   content: "\e6e2";
 }
 
