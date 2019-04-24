@@ -1,6 +1,6 @@
 @import './assets/css/iconfont.css';
 @import './assets/css/style.css';
-@import './components/components.css';
+@import './components/components.scss';
 
 .error-msg{
   color: red;
