@@ -1,4 +1,6 @@
 @import './assets/css/iconfont.css';
+@import './assets/css/style.css';
+@import './components/components.css';
 
 .error-msg{
   color: red;
@@ -19,11 +21,4 @@
 }
 .page-content{
   padding: 45px 5px;
-}
-.font22{
-  font-size: 22px;
-}
-.list-container .am-card-header-content img {
-  margin-right: 5px;
-  width: 26px;
 }

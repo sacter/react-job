@@ -1,0 +1,9 @@
+.list-container .am-card-header-content img {
+  margin-right: 5px;
+  width: 26px;
+}
+.list-container .am-card-header-extra{
+  font-size: 14px;
+  color: #108ee9;
+  font-weight: 600;
+}
