@@ -12,7 +12,7 @@
   bottom: 0;
   width: 100%;
 }
-.am-navbar{
+.fixd-header .am-navbar{
   position: fixed;
   top: 0;
   width: 100%;
@@ -22,4 +22,8 @@
 }
 .font22{
   font-size: 22px;
+}
+.list-container .am-card-header-content img {
+  margin-right: 5px;
+  width: 26px;
 }
