@@ -4,6 +4,7 @@ import { gerRedirectPath } from '../util'
 const AUTH_SUCCESS = 'AUTH_SUCCESS'
 const ERROR_MSG = 'ERROR_MSG'
 const LOAD_DATA = 'LOAD_DATA'
+const LOGOUT = 'LOGOUT'
 
 const initState = {
   redirectTo: '',
@@ -19,7 +20,9 @@ export function user(state = initState, action) {
     case LOAD_DATA:
       return {...state, ...action.payload}
     case ERROR_MSG:
-    return {...state, msg: action.msg, isAuth: false}
+      return {...state, msg: action.msg, isAuth: false}
+    case LOGOUT:
+      return {...initState, redirectTo: '/login'}
     default:
       return state
   }
@@ -32,6 +35,10 @@ function authSuccess (obj) {
 
 function errorMsg (msg) {
   return {msg, type: ERROR_MSG}
+}
+
+export function logoutSubmit(){
+  return {type: LOGOUT}
 }
 
 export function loadData(userinfo) {
