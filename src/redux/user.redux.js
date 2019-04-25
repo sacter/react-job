@@ -37,10 +37,6 @@ function errorMsg (msg) {
   return {msg, type: ERROR_MSG}
 }
 
-export function logoutSubmit(){
-  return {type: LOGOUT}
-}
-
 export function loadData(userinfo) {
   // 获取用户信息
   return {type: LOAD_DATA, payload: userinfo}
@@ -56,6 +52,10 @@ export function update (data) {
       }
     })
   }
+}
+
+export function logoutSubmit(){
+  return {type: LOGOUT}
 }
 
 export function login ({user, pwd}) {
