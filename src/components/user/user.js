@@ -1,11 +1,21 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Result, List, WhiteSpace, WingBlank, Button } from 'antd-mobile'
+import browserCookie from 'browser-cookies'
 
 @connect(
   state => state.user
 )
 class User extends React.Component{
+  constructor(props) {
+    super(props)
+    this.logout = this.logout.bind(this)
+  }
+
+  logout(){
+    browserCookie.erase('userid')
+    console.log('out')
+  }
   render() {
     const props = this.props
     const Item = List.Item
@@ -17,7 +27,6 @@ class User extends React.Component{
           title={props.user}
           message={props.type==='boss'?props.company:null}
         />
-
         <List renderHeader={() => '简介'}>
           <Item
             multipleLine
@@ -33,7 +42,7 @@ class User extends React.Component{
         <WhiteSpace></WhiteSpace>
         <WhiteSpace></WhiteSpace>
         <WingBlank>
-          <Button type='primary'>退出登录</Button>
+          <Button type='primary' onClick={this.logout}>退出登录</Button>
         </WingBlank>
       </div>
     ):null

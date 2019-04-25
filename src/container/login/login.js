@@ -26,7 +26,6 @@ class Login extends React.Component{
     this.handleLogin = this.handleLogin.bind(this)
   }
   register(){
-    console.log(this.props)
     this.props.history.push('/register')
   }
   handleChange(key, val) {
