@@ -11,6 +11,9 @@ const io = require('socket.io')(server)
 
 io.on('connection', socket => {
   console.log('user login')
+  socket.on('sendmsg', data => {
+    io.emit('recvmsg', data)
+  })
 })
 
 app.use(cookiePaser())
