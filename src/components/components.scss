@@ -13,15 +13,22 @@
 .user-page .am-result-pic img{
   width: 60px;
 }
-
-.list-container {
-  .am-card-header-content img{
-    margin-right: 5px;
-    width: 26px;
-  }
-  .am-card-header-extra{
+.am-modal-button-group-h .am-modal-button {
   font-size: 14px;
-  color: #108ee9;
-  font-weight: 600;
-  }
+  height: 40px;
+  line-height: 40px;
+}
+
+#chat-page .chat-me .am-list-extra{
+  flex-basis: auto;
+}
+#chat-page .chat-me .am-list-content{
+  padding-right: 16px;
+  text-align: right;
+}
+.stick-footer{
+  z-index: 10;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }

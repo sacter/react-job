@@ -9,7 +9,6 @@ export default function scaterForm (Comp) {
     }
 
     handleChange(key, val) {
-      console.log(key, val)
       this.setState({
         [key]: val
       })
