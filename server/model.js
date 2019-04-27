@@ -18,7 +18,7 @@ const models = {
     'company': {'type': String},
     'money': {'type': String}
   },
-  chart: {
+  chat: {
     'chatid': {'type': String, 'require': true},
     'from': {'type': String, 'require': true},
     'to': {'type': String, 'require': true},
