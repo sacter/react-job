@@ -15,7 +15,7 @@ Router.get('/list', (req, res) => {
   })
 })
 Router.get('/getmsglist', (req, res) => { // 获取聊天信息
-  Chat.remove({}, (err, doc) => {})
+  // Chat.remove({}, (err, doc) => {})
   const user = req.cookies.userid;
   User.find({}, (err, userdoc) => {
     let users = {}
