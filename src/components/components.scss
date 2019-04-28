@@ -26,6 +26,20 @@
   padding-right: 16px;
   text-align: right;
 }
+#chat-page .am-grid-icon{
+  display: none
+}
+#chat-page .am-grid .am-flexbox .am-flexbox-item .am-grid-item-content .am-grid-item-inner-content .am-grid-text {
+  font-size: 18px;
+}
+#chat-page .am-grid-text{
+  margin-top: 0;
+}
+.emoji-btn{
+  margin-right: 12px;
+  line-height: 20px;
+  display: inline-block;
+}
 .stick-footer{
   z-index: 10;
   position: absolute;

@@ -1,9 +1,10 @@
 import React from 'react'
 import io from 'socket.io-client'
-import { List, InputItem, NavBar, Icon } from 'antd-mobile'
+import { List, InputItem, NavBar, Icon, Grid } from 'antd-mobile'
 import { connect } from 'react-redux'
 import { getMsgList, sendMsg, recvMsg } from '../../redux/chat.redux'
 import { getChatId } from '../../util'
+import { emojiList } from '../../assets/emoji/emoji'
 
 const socket = io('ws://localhost:8001')
 
@@ -21,15 +22,26 @@ class Chat extends React.Component {
       this.props.getMsgList()
       this.props.recvMsg()
     }
+    this.fixCarousel()
+  }
+  fixCarousel(){
+    setTimeout(() => {
+      window.dispatchEvent(new Event('resize'))
+    })
   }
   handleSubmit(){
     const from = this.props.user._id
     const to = this.props.match.params.user
     const msg = this.state.text
     this.props.sendMsg({from, to, msg})
-    this.setState({text: ''})
+    this.setState({
+      text: '',
+      showEmoji: false
+    })
   }
   render(){
+    let emoji = emojiList.split(' ').filter(v => v).map(v => ({text: v}))
+
     const userid = this.props.match.params.user
     const Itme = List.Item
     const users = this.props.chat.users
@@ -72,9 +84,35 @@ class Chat extends React.Component {
               onChange={v => {
                 this.setState({text: v})
               }}
-              extra={<span onClick={() => {this.handleSubmit()}}>发送</span>}
+              extra={
+                <div>
+                  <span
+                    className='emoji-btn'
+                    onClick={() => {
+                      this.setState({
+                        showEmoji: !this.state.showEmoji
+                      })
+                      this.fixCarousel()
+                    }}
+                    role='img'
+                  >😃</span>
+                  <span onClick={() => {this.handleSubmit()}}>发送</span>
+                </div>
+              }
             ></InputItem>
           </List>
+          {this.state.showEmoji?<Grid
+            data={emoji}
+            columnNum={9}
+            carouselMaxRow={4}
+            isCarousel={true}
+            hasLine={false}
+            onClick={el => {
+              this.setState({
+                text: this.state.text + el.text
+              })
+            }}
+          />:null}
         </div>
       </div>
     )
