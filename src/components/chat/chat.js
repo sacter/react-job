@@ -61,20 +61,26 @@ class Chat extends React.Component {
         </NavBar>
         {chatmsgs.map( v => {
           const avatar = require(`../img/${users[v.from].avatar}.png`)
-          return v.from === userid?(
-            <List key={v._id}>
-              <Itme
-                thumb={avatar}
-              >{v.content}</Itme>
-            </List>
-          ):(
-            <List key={v._id}>
-              <Itme
-                extra={<img src={avatar}/>}
-                className='chat-me'
-              >{v.content}</Itme>
-            </List>
-          )
+          return (<div className='chat-list'>
+                    {
+                      v.from === userid?(
+                        <List key={v._id}>
+                          <Itme
+                            className='msg-to'
+                            thumb={avatar}
+                          >{v.content}</Itme>
+                        </List>
+                      ):(
+                        <List key={v._id}>
+                          <Itme
+                            extra={<img src={avatar}/>}
+                            className='chat-me msg-me'
+                          >{v.content}</Itme>
+                        </List>
+                      )
+                    }
+                  </div>)
+            
         })}
         <div className='stick-footer'>
           <List>
@@ -105,7 +111,7 @@ class Chat extends React.Component {
             data={emoji}
             columnNum={9}
             carouselMaxRow={4}
-            isCarousel={true}
+            isCarousel
             hasLine={false}
             onClick={el => {
               this.setState({

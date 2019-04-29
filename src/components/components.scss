@@ -35,6 +35,15 @@
 #chat-page .am-grid-text{
   margin-top: 0;
 }
+#chat-page .am-list-item .am-input-control input{
+  font-size: 14px
+}
+#chat-page .chat-list .am-list-body::before{
+  background-color: #fff;
+}
+#chat-page .am-list-item .am-list-line .am-list-content{
+  white-space: normal;
+}
 .emoji-btn{
   margin-right: 12px;
   line-height: 20px;
