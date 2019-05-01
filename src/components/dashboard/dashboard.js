@@ -6,11 +6,9 @@ import NavLinkBar from '../navlink/navlink'
 import Boss from '../../components/boss/boss'
 import Genius from '../../components/genius/genius'
 import User from '../../components/user/user'
+import Msg from '../../components/msg/msg'
 import { getMsgList, recvMsg } from '../../redux/chat.redux'
 
-function Msg(){
-  return <h2>消息列表</h2>
-}
 @connect(
   state => state,
   {getMsgList, recvMsg}

@@ -61,17 +61,17 @@ class Chat extends React.Component {
         </NavBar>
         {chatmsgs.map( v => {
           const avatar = require(`../img/${users[v.from].avatar}.png`)
-          return (<div className='chat-list'>
+          return (<div key={v._id} className='chat-list'>
                     {
                       v.from === userid?(
-                        <List key={v._id}>
+                        <List>
                           <Itme
                             className='msg-to'
                             thumb={avatar}
                           >{v.content}</Itme>
                         </List>
                       ):(
-                        <List key={v._id}>
+                        <List>
                           <Itme
                             extra={<img src={avatar}/>}
                             className='chat-me msg-me'
