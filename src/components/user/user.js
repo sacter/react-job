@@ -21,7 +21,6 @@ class User extends React.Component{
       { text: '取消'},
       { text: '确认', onPress: () => {
         browserCookie.erase('userid')
-        console.log('out')
         this.props.logoutSubmit()
       }},
     ])
