@@ -30,7 +30,7 @@ export function chat (state = initState, action) {
       const num = action.payload.to === action.userid ? 1 : 0 
       return {
         ...state,
-        chatmsg: [...state.chatmsg, action.payload],
+        chatmsg: duplicateRemone([...state.chatmsg, action.payload]),
         unread:state.unread + num
       }
     case MSG_READ:
@@ -43,6 +43,17 @@ export function chat (state = initState, action) {
     default:
       return state
   }
+}
+function duplicateRemone(arr) { // 去重
+  const obj = {}
+  let newArr = arr.reduce((cur, next) => {
+    if (!obj[next._id]) {
+      obj[next._id] = true
+      cur.push(next)
+    }
+    return cur
+  }, [])
+  return newArr
 }
 function msgList(msgs, users, userid) {
   return {type: MSG_LIST, payload: {msgs, users, userid}}
