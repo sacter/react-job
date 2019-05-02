@@ -29,7 +29,7 @@ Router.get('/getmsglist', (req, res) => { // 获取聊天信息
     })
   })
 })
-Router.post('/readmsg', (req, res) => { // 更改读取
+Router.post('/readmsg', (req, res) => { // 更改未读数
   const userid = req.cookies.userid;
   const {from}= req.body;
   Chat.update(
@@ -37,7 +37,6 @@ Router.post('/readmsg', (req, res) => { // 更改读取
     {'$set':{read: true}},
     {'multi': true},
     (err, doc) => {
-    console.log(doc)
     if (!err) {
       return res.json({code: 0, num: doc.nModified})
     }

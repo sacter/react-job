@@ -45,7 +45,6 @@ class Chat extends React.Component {
   }
   render(){
     let emoji = emojiList.split(' ').filter(v => v).map(v => ({text: v}))
-
     const userid = this.props.match.params.user
     const Itme = List.Item
     const users = this.props.chat.users

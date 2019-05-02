@@ -55,7 +55,7 @@ class Dashboard extends React.Component{
         component: User
       }
     ]
-    return user.user ? (
+    return (
       <div>
         <NavBar className='fixd-header' mode='dark'>{navList.find(v => v.path===pathname).title}</NavBar>
           <div style={{paddingTop: 45, paddingBottom: 56}}>
@@ -69,7 +69,7 @@ class Dashboard extends React.Component{
           </div>
         <NavLinkBar data={navList}></NavLinkBar>
       </div>
-    ) : <Redirect to='/login'/>
+    )
   }
 }
 
