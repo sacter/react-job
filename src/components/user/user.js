@@ -13,8 +13,13 @@ class User extends React.Component{
   constructor(props) {
     super(props)
     this.logout = this.logout.bind(this)
+    this.goSetting = this.goSetting.bind(this)
   }
 
+  goSetting () {
+    console.log(222)
+    this.props.history.push('/setting')
+  }
   logout(){
     const alert = Modal.alert
     alert('', '确认退出登录?', [
@@ -31,11 +36,15 @@ class User extends React.Component{
     const Brief = Item.Brief
     return props.user?(
       <div className='user-page'>
-        <Result
-          img={<img src={require(`../img/${props.avatar}.png`)} alt=''/>}
-          title={props.user}
-          message={props.type==='boss'?props.company:null}
-        />
+        <div
+          onClick={this.goSetting}
+        >
+          <Result
+            img={<img src={require(`../img/${props.avatar}.png`)} alt=''/>}
+            title={props.user}
+            message={props.type==='boss'?props.company:null}
+          />
+        </div>
         <List renderHeader={() => '简介'}>
           <Item
             multipleLine
